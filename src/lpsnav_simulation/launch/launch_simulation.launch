@@ -1,0 +1,38 @@
+<launch>
+  <!-- Load TurtleBot3 Model -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'" />
+
+  <!-- Gazebo launch with two_agents.world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find lpsnav_simulation)/worlds/two_agents.world"/>
+  </include>
+
+  <!-- Spawn TurtleBot1 at origin (for LpsnavAgent) -->
+  <node name="spawn_urdf_turtlebot1" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-param robot_description -urdf -model turtlebot1 -x 0 -y 0 -z 0.1 -Y 1.5708" />
+
+  <!-- Spawn TurtleBot2 at [-5, 0] (for SfmAgent) -->
+  <node name="spawn_urdf_turtlebot2" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-param robot_description -urdf -model turtlebot2 -x -5 -y 0 -z 0.1 -Y 1.5708" />
+
+  <!-- Launch LPSnav Agent -->
+  <node pkg="lpsnav_simulation" type="agent_lpsnav.py" name="lpsnav_agent" output="screen">
+    <!-- Set start and goal positions for LpsnavAgent -->
+    <param name="start_x" value="0.0"/>
+    <param name="start_y" value="0.0"/>
+    <param name="goal_x" value="0.0"/>
+    <param name="goal_y" value="7.0"/>  <!-- Goal position aligned with green sphere -->
+    <param name="max_speed" value="0.5"/>
+  </node>
+
+  <!-- Launch SFM Agent -->
+  <node pkg="lpsnav_simulation" type="sfm_agent.py" name="sfm_agent" output="screen">
+    <!-- Set start and goal positions for SfmAgent -->
+    <param name="start_x" value="-5.0"/>
+    <param name="start_y" value="0.0"/>
+    <param name="goal_x" value="-5.0"/>
+    <param name="goal_y" value="7.0"/>  <!-- Goal position aligned with red sphere -->
+    <param name="max_speed" value="0.5"/>
+  </node>
+</launch>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lpsnav_simulation</name>  <!-- Replace with your desired package name if different -->
+  <version>0.0.1</version>
+  <description>ROS1 package for LPS navigation simulation with environment, SFM, and LPSNav agents.</description>
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>Apache 2.0</license>
+
+  <!-- Buildtool dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed for the Python nodes -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+
+  <!-- Runtime dependencies -->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <!-- Export build information -->
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+</package>
+

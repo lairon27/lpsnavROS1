@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="two_agents_world">
+    <!-- Physics and Environment -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Turtlebot1 Model (spawned from launch file) -->
+    <include>
+      <uri>model://turtlebot3_burger</uri>  <!-- Updated to turtlebot3_burger -->
+      <pose>0 0 0.1 0 0 0</pose>
+    </include>
+
+    <!-- Turtlebot2 Model (spawned from launch file) -->
+    <include>
+      <uri>model://turtlebot3_burger</uri>  <!-- Updated to turtlebot3_burger -->
+      <pose>-5 0 0.1 0 0 0</pose>
+    </include>
+
+    <!-- Goal 1 Marker -->
+    <model name="goal_marker_1">
+      <static>true</static>
+      <link name="link">
+        <pose>0 7 0.1 0 0 0</pose> <!-- Set goal position -->
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient> <!-- Green color -->
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Goal 2 Marker -->
+    <model name="goal_marker_2">
+      <static>true</static>
+      <link name="link">
+        <pose>-5 7 0.1 0 0 0</pose> <!-- Set goal position -->
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient> <!-- Red color -->
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
+
